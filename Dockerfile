@@ -1,15 +1,14 @@
+# Use an official Python runtime as a base image
+FROM python:3.9
 
-FROM python:3.9-slim
-
+# Set the working directory in the container
 WORKDIR /app
 
+# Copy all files to the container
 COPY . /app
 
-RUN pip install --no-cache-dir flask
+# Install necessary dependencies
+RUN pip install scikit-learn joblib
 
-EXPOSE 5000
-
-ENV FLASK_APP=hello-world.py
-
-CMD ["flask", "run", "--host=0.0.0.0"]
-
+# Run the script
+CMD ["python", "ml-model.py"]
